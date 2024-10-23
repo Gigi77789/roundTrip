@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My Healthy Data</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>My Healthy Data</h1>
+      <button id="homeBtn" class="nav-button">My Data</button>
+      <button
+        id="addBtn"
+        class="nav-button"
+        onclick="window.location.href='addRecord.php'"
+      >
+        Add a New Record
+      </button>
+      <button id="deleteBtn" class="nav-button">Delete a Record</button>
+    </header>
+
+    <div class="form" id="regForm">
+      <fieldset>
+        <legend>Today's Healthy Data</legend>
+        <form name="register" action="addDelete.php" method="post">
+          <input
+            name="time"
+            type="date"
+            placeholder="please select the record time"
+            required
+          /><br />
+          <input
+            name="bloodGlucose"
+            type="number"
+            placeholder="please enter your blood glucose level"
+            required
+          /><br />
+          <input
+            name="bloodPressure"
+            type="number"
+            placeholder="please enter your blood pressure"
+            required
+          /><br />
+          <input
+            name="weight"
+            type="number"
+            placeholder="please enter your weight"
+            required
+          /><br />
+          <input
+            name="exerciseDuration"
+            type="number"
+            placeholder="please enter your exercise duration"
+            required
+          /><br />
+          <input
+            name="eat"
+            type="text"
+            placeholder="What did you eat today?"
+            required
+          /><br />
+          <input name="submit" type="submit" />
+        </form>
+      </fieldset>
+    </div>
+
+    <div class="form" id="deleteForm">
+      <fieldset>
+        <legend>Deleting a Row</legend>
+        <form name="delRow" action="deleteRow.php" method="post">
+          <input
+            name="record_date"
+            type="date"
+            placeholder="Select a date you want to delete"
+            required
+          /><br />
+          <input name="submitDelete" type="submit" />
+        </form>
+      </fieldset>
+    </div>
+
+    <div id="response"></div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#homeBtn").click(function () {
+          window.location.href = "home.php";
+        });
+
+        $("#addBtn").click(function () {
+          $("#regForm").show();
+          $("#deleteForm").hide();
+        });
+
+        $("#deleteBtn").click(function () {
+          $("#deleteForm").show();
+          $("#regForm").hide();
+        });
+
+        // Default state
+        $("#regForm").hide();
+        $("#deleteForm").hide();
+      });
+    </script>
+  </body>
+</html>
